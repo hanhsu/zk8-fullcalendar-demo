@@ -1,0 +1,22 @@
+#cal {
+	width: 800px;
+	height:600px;
+	margin: auto;
+	margin-top:50px;
+}
+
+.z-button {
+	margin: 5px;
+}
+
+.z-datebox-input, .z-textbox {
+	width:170px;
+}
+
+.z-popup-content {
+	padding: 2px;
+}
+
+.ui-widget-content {
+	border: solid #EBEBEB 1px;
+}

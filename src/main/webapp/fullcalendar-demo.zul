@@ -1,0 +1,69 @@
+<zk>
+<?link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" ?>
+<?link rel="stylesheet" href="jquery-ui/css/custom-theme/jquery-ui-1.9.2.custom.css" ?>
+<?link rel="stylesheet" href="styles/demo.css" ?>
+<?script type="text/javascript" src="bower_components/moment/moment.js" ?>
+<?script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js" ?>
+<?script type="text/javascript" src="javascripts/demo.js" ?>
+
+<div xmlns:n="native" xmlns:w="client"
+	viewModel="@id('vm') @init('org.zkoss.demo.zk8_fullcalendar_demo.DemoViewModel')">
+
+	<n:div id="cal"></n:div>
+	
+	<popup id="modifyEventPop">
+		<window title="Modify Event: " width="500px">
+			<grid form="@id('fx') @load(vm.tempEvent) @save(vm.tempEvent, before='modEvent')">
+				<rows>
+					<row>
+						<label value="Event ID: " />
+						<label id="modId" value="@load(fx.id)" />
+					</row>
+					<row>
+						<label value="Title:" />
+						<textbox id="modTitle" value="@bind(fx.title)" />
+					</row>
+					<row>
+						<label value="Start Date:" />
+						<datebox id="modStart" value="@bind(fx.start)" format="long+medium" />
+					</row>
+					<row>
+						<label value="End Date:" />
+						<datebox id="modEnd" value="@bind(fx.end)" format="long+medium" />
+					</row>
+				</rows>
+			</grid>
+			<button id="modify" label="Modify" 
+				onClick="@command('modEvent', pop=modifyEventPop)" />
+			<button label="Cancel" onClick="modifyEventPop.close()" />
+		</window>
+	</popup>
+
+	<popup id="newEventPop">
+		<window title="Create Event: " width="500px">
+			<grid form="@id('fx') @load(vm.tempEvent) @save(vm.tempEvent, before='createEvent')">
+				<rows>
+					<row visible="false">
+						<label id="newId" value="@load(fx.id)" />
+					</row>
+					<row>
+						<label value="Title:" />
+						<textbox id="newTitle" value="@bind(fx.title)" />
+					</row>
+					<row>
+						<label value="Start Date:" />
+						<datebox id="newStart" value="@bind(fx.start)" format="long+medium" />
+					</row>
+					<row>
+						<label value="End Date:" />
+						<datebox id="newEnd" value="@bind(fx.end)" format="long+medium" />
+					</row>
+				</rows>
+			</grid>
+			<button label="Create" onClick="@command('createEvent', pop=newEventPop)" />
+			<button label="Clear" onClick="@command('clearForm')" />
+			<button label="Cancel" onClick="newEventPop.close()" />
+		</window>
+	</popup>
+</div>
+</zk>
